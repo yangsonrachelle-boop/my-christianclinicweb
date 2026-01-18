@@ -66,25 +66,38 @@ header nav ul li a.btn:hover {
     color: #02851a;
 }
 
+/* ---------------- Hero Section ---------------- */
 .hero {
+    height: 400px;
+    /* Use relative path to the root folder where background.jpeg is stored */
     background-image: url("../background.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 1; /* ensures content is above overlay */
 }
 
-
+/* Optional dark overlay for text readability */
 .hero::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 0;
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent overlay */
+    z-index: 0;
 }
 
+/* Ensure container content is above overlay */
 .hero .container {
-  position: relative;
-  z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -635,6 +648,7 @@ body {
 
 
   
+
 
 
 
