@@ -68,7 +68,7 @@ header nav ul li a.btn:hover {
 
 .hero {
   height: 400px;
-  background-image: url('../main/background.jpeg'); /* correct! */
+  background-image: url('../background.jpeg'); /* correct! */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -642,6 +642,7 @@ body {
 
 
   
+
 
 
 
