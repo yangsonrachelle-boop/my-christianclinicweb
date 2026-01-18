@@ -69,7 +69,7 @@ header nav ul li a.btn:hover {
 .hero {
     position: relative;
     height: 400px;
-    background-image: url("https://raw.githubusercontent.com/yangsonrachelle-boop/my-christianclinicweb/main/background.jpeg");
+    background-image: url("background.jpeg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -678,6 +678,7 @@ body {
 
 
   
+
 
 
 
