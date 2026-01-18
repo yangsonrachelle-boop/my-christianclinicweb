@@ -67,19 +67,12 @@ header nav ul li a.btn:hover {
 }
 
 .hero {
-  height: 400px;
-  background-image: url('../background.jpeg'); /* correct! */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-  position: relative;
+    background-image: url("../background.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
+
 
 .hero::before {
   content: "";
@@ -642,6 +635,7 @@ body {
 
 
   
+
 
 
 
