@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* ===== ADMIN DASHBOARD STYLES ===== */
+body {
+    background: #f4fefe;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #00861d;
+    color: #fff;
+    padding: 20px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+section.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h3 {
+    color: #117b0b;
+    margin-bottom: 20px;
+}
+
+/* MESSAGE BOX */
+.msg-box {
+    background: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.msg-box p {
+    margin: 5px 0;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+    margin-top: 10px;
+    background: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.delete-btn:hover {
+    background: #b52a37;
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <h2>Admin Dashboard</h2>
+        <a href="index.html">Logout</a>
+    </div>
+</header>
+
+<section class="container">
+    <h3>Patient Messages</h3>
+    <div id="messages"></div>
+</section>
+
+<script>
+// Load messages from localStorage
+let messages = JSON.parse(localStorage.getItem("messages")) || [];
+let container = document.getElementById("messages");
+
+// Display messages
+if (messages.length === 0) {
+    container.innerHTML = "<p>No messages yet.</p>";
+} else {
+    messages.forEach((msg, index) => {
+        container.innerHTML += `
+            <div class="msg-box">
+                <p><strong>Name:</strong> ${msg.name}</p>
+                <p><strong>Email:</strong> ${msg.email}</p>
+                <p>${msg.message}</p>
+                <button class="delete-btn" onclick="deleteMessage(${index})">Delete</button>
+            </div>
+        `;
+    });
+}
+
+// Delete message function
+function deleteMessage(index) {
+    let messages = JSON.parse(localStorage.getItem("messages")) || [];
+    if (confirm("Are you sure you want to delete this message?")) {
+        messages.splice(index, 1);
+        localStorage.setItem("messages", JSON.stringify(messages));
+        location.reload();
+    }
+}
+</script>
+
+</body>
+</html>
+
