@@ -7,21 +7,8 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="fade-in">
+
 <section class="admin-login">
-
-    <div class="container">
-        <h2>Admin Login</h2>
-
-        <input type="text" id="username" placeholder="Username">
-        <input type="password" id="password" placeholder="Password">
-        <button onclick="login()">Login</button>
-
-        <p id="error"></p>
-    </div>
-
-</section>
-
-<section class="login">
     <div class="container">
         <h2>Admin Login</h2>
 
@@ -39,8 +26,10 @@ function login() {
     const pass = document.getElementById("password").value;
 
     if (user === "admin" && pass === "1234") {
+        // Redirect to admin dashboard if login is correct
         window.location.href = "admin-dashboard.html";
     } else {
+        // Show error message
         document.getElementById("error").innerText = "Invalid login";
     }
 }
@@ -48,3 +37,4 @@ function login() {
 
 </body>
 </html>
+
