@@ -696,27 +696,16 @@ nav ul {
 nav ul li a {
     text-align: center; /* keep text centered */
 }
-.hero {
-  min-height: 400px;
-  background-image: url("background.jpeg") !important;
-  background-size: cover !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
-  position: relative;
+
+.logo {
+  display: block !important;
+  width: 60px !important;
+  height: 60px !important;
+  max-width: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  z-index: 0;
-}
-
-.hero * {
-  position: relative;
-  z-index: 1;
-}
 
 
 
