@@ -80,15 +80,17 @@ const autoReplies = [
     { keywords: ['culture and sensitivity'], reply: '₱900.00' },
     { keywords: ['culture only'], reply: '₱600.00' },
     { keywords: ['check-up'], reply: '₱500.00' },
-    { keywords: ['chest x-ray'], reply: '₱300.00' },
-    { keywords: ['chest x-ray vdr'], reply: '₱500.00' },
+    { keywords: ['chest x-ray','chest xray'], reply: '₱300.00' },
+    { keywords: ['chest x-ray vdr','chest vdr'], reply: '₱500.00' },
+        { keywords: ['chest x-ray pa','chestpa','chest PA','chest pa'], reply: '₱300.00' },
+
     { keywords: ['chest x-ray ap/lat','ap/lat'], reply: '₱750.00' },
     { keywords: ['cocaine','cocaine test'], reply: '₱500.00' },
     { keywords: ['creamship management'], reply: '₱850.00' },
     { keywords: ['dengue iga'], reply: '₱2,600.00' },
     { keywords: ['dengue igm and igg'], reply: '₱1,500.00' },
     { keywords: ['dengue nsi'], reply: '₱2,000.00' },
-    { keywords: ['drug and alcohol test','drugtest','alcoholtest','alcohol test'], reply: '₱250.00' },
+    { keywords: ['drug and alcohol test','drugtest','alcoholtest','alcohol test','drug test'], reply: '₱250.00' },
     { keywords: ['ecg'], reply: '₱350.00' },
     { keywords: ['estradiol'], reply: '₱1,300.00' },
     { keywords: ['estrogen'], reply: '₱1,300.00' },
@@ -325,3 +327,4 @@ chatInput.addEventListener('keypress', function(e) {
         }, 1000);
     }
 });
+
