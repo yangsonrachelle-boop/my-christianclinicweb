@@ -5,13 +5,14 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  font-family: "Poppins", sans-serif;
-  background: #f5f8fa;
+  background: linear-gradient(135deg, #f4fefe, #e8f5f5);
   color: #333;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
 img {
@@ -33,6 +34,8 @@ img {
 ================================ */
 header {
   background: linear-gradient(90deg, #105100, #039c24);
+  color: #fff;
+  padding: 25px 0;
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -42,8 +45,8 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 15px 0;
   gap: 10px;
+  position: relative;
 }
 
 .logo-container {
@@ -55,37 +58,51 @@ header {
 .logo {
   width: 60px;
   height: 60px;
+  object-fit: cover;
   border-radius: 50%;
   border: 2px solid #fff;
-  object-fit: cover;
 }
 
 header h1 {
-  color: #fff;
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
 }
 
 /* ===============================
-   NAVIGATION
+   NAV
 ================================ */
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
 nav ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 25px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-nav a {
+nav ul li a {
   color: #fff;
   text-decoration: none;
+  font-weight: 500;
   padding: 6px 12px;
   border-radius: 6px;
   transition: 0.3s;
 }
 
-nav a:hover {
+nav ul li a:hover {
   background: rgba(255,255,255,0.2);
+}
+
+nav ul li a.btn {
+  background: #fff;
+  color: #041500;
+  font-weight: 600;
 }
 
 /* ===============================
@@ -96,36 +113,38 @@ nav a:hover {
   background: 
     linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
     url("background.jpeg") center/cover no-repeat;
-  display: flex;
-  align-items: center;
-  text-align: center;
+  position: relative;
   color: #fff;
+  text-align: center;
 }
 
 .hero .container {
-  max-width: 800px;
-}
-
-.hero h2 {
-  font-size: 2.5rem;
-  margin-bottom: 10px;
-}
-
-.hero p {
-  font-size: 1.1rem;
+  position: relative;
+  z-index: 1;
 }
 
 /* ===============================
    SECTIONS
 ================================ */
-section {
-  padding: 70px 0;
-}
-
 .about,
 .services,
 .contact {
+  padding: 70px 0;
   text-align: center;
+}
+
+.about h2,
+.services h2 {
+  font-size: 2.2rem;
+  margin-bottom: 25px;
+  color: #028f38;
+}
+
+.about p {
+  max-width: 750px;
+  margin: auto;
+  font-size: 1.1rem;
+  color: #555;
 }
 
 /* ===============================
@@ -139,14 +158,14 @@ section {
 
 .card {
   background: #fff;
-  padding: 25px;
+  padding: 25px 20px;
   border-radius: 15px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   transition: 0.3s;
 }
 
 .card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px);
 }
 
 /* ===============================
@@ -157,38 +176,10 @@ section {
   padding: 12px 25px;
   background: linear-gradient(90deg, #01901e, #057401);
   color: #fff;
-  border-radius: 50px;
   text-decoration: none;
+  border-radius: 50px;
+  font-weight: 600;
   transition: 0.3s;
-}
-
-.btn:hover {
-  transform: translateY(-2px);
-}
-
-/* ===============================
-   CONTACT
-================================ */
-.contact .container {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 40px;
-}
-
-.contact form {
-  background: #fff;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
-}
-
-.contact input,
-.contact textarea {
-  width: 100%;
-  padding: 14px;
-  margin-bottom: 15px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
 }
 
 /* ===============================
@@ -201,14 +192,65 @@ section {
   width: 300px;
   max-width: 90%;
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  border-radius: 15px;
+  box-shadow: 0 12px 25px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
   z-index: 1000;
 }
 
+.chat-header {
+  background: linear-gradient(90deg, #017c01, #046900);
+  color: #fff;
+  padding: 15px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.chat-body {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  background: #f1f5f9;
+}
+
 /* ===============================
-   RESPONSIVE (TABLET+)
+   CONTACT
+================================ */
+.contact .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 50px;
+}
+
+.contact form {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+/* ===============================
+   ADMIN / BUTTONS
+================================ */
+.admin-btn,
+.download-btn {
+  position: absolute;
+  right: 15px;
+  background: #2b7a31;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  text-decoration: none;
+}
+
+.admin-btn { top: 15px; }
+.download-btn { top: 45px; }
+
+/* ===============================
+   RESPONSIVE
 ================================ */
 @media (min-width: 768px) {
   .header-container {
@@ -218,9 +260,5 @@ section {
 
   .contact .container {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .hero h2 {
-    font-size: 3rem;
   }
 }
