@@ -78,7 +78,7 @@ header nav ul li a.btn:hover {
 
 .hero {
   height: 400px;
-  background-image: url('../images/background.jpeg'); /* correct! */
+  background-image: url("background.jpeg"); /* correct! */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -701,3 +701,4 @@ nav ul {
 nav ul li a {
     text-align: center; /* keep text centered */
 }
+
