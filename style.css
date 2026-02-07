@@ -66,70 +66,44 @@ header nav ul li a.btn:hover {
     color: #02851a;
 }
 
+.header-container .btn {
+    position: absolute;
+    top: 50px;              /* space below admin button */
+    right: 15px;
+
+    padding: 4px 8px;       /* smaller */
+    font-size: 0.75rem;
+    border-radius: 4px;
+}
+
 .hero {
-    position: relative;
-    height: 400px;
-    background-image: url("background.jpeg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: white;
+  height: 400px;
+  background-image: url('../images/background.jpeg'); /* correct! */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+  position: relative;
 }
 
 .hero::before {
-    content: "";
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
 }
 
-.hero .hero-content {
-    position: relative;
-    z-index: 1;
-    max-width: 800px;
-    padding: 0 20px;
+.hero .container {
+  position: relative;
+  z-index: 1;
 }
 
-.hero .hero-content h2 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.hero .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 25px;
-}
-
-.hero .hero-content .btn {
-    background-color: #0c7d02;
-    color: white;
-    text-decoration: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    transition: background 0.3s ease;
-}
-
-.hero .hero-content .btn:hover {
-    background-color: #065901;
-}
-
-@media (max-width: 768px) {
-    .hero {
-        height: 300px;
-    }
-    .hero .hero-content h2 {
-        font-size: 2rem;
-    }
-    .hero .hero-content p {
-        font-size: 1rem;
-    }
-}
 
 /* ---------------- About Section ---------------- */
 .about {
@@ -586,15 +560,16 @@ body {
 
 .admin-btn {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 15px;
+    right: 15px;
 
     background: #2b7a31;
     color: #fff;
-    padding: 8px 14px;
-    border-radius: 5px;
-    font-size: 0.9rem;
+    padding: 4px 8px;     /* smaller padding */
+    border-radius: 4px;
+    font-size: 0.75rem;  /* smaller text */
     text-decoration: none;
+    line-height: 1;
 }
 
 
@@ -664,29 +639,65 @@ body {
     justify-content: space-between;
     align-items: center;
 }
-
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px; /* space between logo and text */
+    gap: 10px;
 }
 
 .logo {
-    height: 40px; /* adjust size as needed */
-    width: auto;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;     
+    border: 2px solid #fff; 
+    background: transparent;
+    padding: 0;             
 }
 
+/* ===============================
+   DOWNLOAD BUTTON BELOW ADMIN
+================================ */
+.download-btn {
+    position: absolute;
+    top: 45px;           /* below admin button */
+    right: 15px;
 
-  
+    background: #2b7a31; /* same as admin */
+    color: #fff;
+    padding: 4px 8px;     /* same as admin */
+    border-radius: 4px;   /* same as admin */
+    font-size: 0.75rem;   /* same as admin */
+    text-decoration: none;
+    line-height: 1;
+}
 
+/* Hover effect like admin button */
+.download-btn:hover {
+    background: #036b0a;
+    color: #fff;
+}
+/* ---------------- Move nav below the title ---------------- */
+.header-container {
+    display: flex;
+    flex-direction: column; /* stack logo/title and nav vertically */
+    align-items: center;
+    gap: 10px; /* space between title and nav */
+}
 
+nav {
+    width: 100%;
+    display: flex;
+    justify-content: center; /* center nav links */
+}
 
+nav ul {
+    display: flex;
+    gap: 25px; /* space between links */
+    flex-wrap: wrap; /* wrap on smaller screens */
+    justify-content: center; /* center on mobile too */
+}
 
-
-
-
-
-
-
-
-
+nav ul li a {
+    text-align: center; /* keep text centered */
+}
