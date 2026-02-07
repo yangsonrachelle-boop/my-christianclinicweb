@@ -77,29 +77,23 @@ header nav ul li a.btn:hover {
 }
 
 .hero {
-  height: 400px;
-  background-image: url('../images/background.jpeg'); /* correct! */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
+  min-height: 400px;
+  background-image: url("background.jpeg") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
   position: relative;
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
   z-index: 0;
 }
 
-.hero .container {
+.hero * {
   position: relative;
   z-index: 1;
 }
@@ -701,3 +695,4 @@ nav ul {
 nav ul li a {
     text-align: center; /* keep text centered */
 }
+
