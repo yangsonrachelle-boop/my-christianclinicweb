@@ -695,4 +695,12 @@ nav ul {
 nav ul li a {
     text-align: center; /* keep text centered */
 }
+.logo {
+  display: block !important;
+  width: 60px !important;
+  height: 60px !important;
+  max-width: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
 
