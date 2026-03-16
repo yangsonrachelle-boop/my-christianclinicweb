@@ -13,7 +13,7 @@
 <header id="header">
     <div class="container header-container">
         <div class="logo-container">
-            <img src="logo2.png" alt="Clinic Logo" class="logo" />
+            <img src="http://127.0.0.1:5500/images/logo2.png" alt="Clinic Logo" class="logo" />
             <h1>Christian Medical Clinic</h1>
         </div>
         <nav>
@@ -21,6 +21,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="services.html">Services</a></li>
                 <li><a href="contact.html">Contact</a></li>
+                <li><a href="booking.html">Book appointment</a></li>
                 <li><a href="PATIENT_INFO_SHEET1.pdf" download class="btn">Download information sheet</a></li>
                 <li>
                     <a href="admin-login.html" class="admin-btn">
@@ -74,17 +75,25 @@
 
 <!-- Floating Chatbot -->
 <div class="chatbot">
-    <div class="chat-header">💬 I'm Moy ai chatbot Ask me!</div>
-    <div class="chat-body" id="chat-body">
-        <div class="bot-message">Hello! How can we assist you today?</div>
+    
+    <div class="chat-header">
+        💬 I'm Moy AI Chatbot
+        <div class="chat-lang">
+            <button onclick="setChatLanguage('en')" class="lang-btn">EN</button>
+            <button onclick="setChatLanguage('tl')" class="lang-btn">TL</button>
+        </div>
     </div>
+
+    <div class="chat-body" id="chat-body">
+        <div class="bot-message" id="welcome-message">
+            Hello! How can we assist you today?
+        </div>
+    </div>
+
     <input type="text" id="chat-input" placeholder="Type your message...">
 </div>
-
 
 <script src="chatbot.js"></script>
 <script src="scroll.js"></script>
 </body>
 </html>
-
-
