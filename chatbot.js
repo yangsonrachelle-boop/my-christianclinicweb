@@ -3,20 +3,45 @@ const chatHeader = chatbox.querySelector('.chat-header');
 const chatBody = chatbox.querySelector('.chat-body');
 const chatInput = chatbox.querySelector('#chat-input');
 
+
+
+
 let isCollapsed = false;
 
 
 // Predefined auto-replies
 const autoReplies = [
     // General inquiries
-    { keywords: ['hours', 'time'], reply: 'Our clinic is open from 8am to 6pm, Monday to Saturday.' },
-    { keywords: ['services','service','SERVICES','Services'], reply: 'We offer Physical Exams, Lab Tests, X-ray, Ultrasound, ECG, Dental, and Optical services.' },
-    { keywords: ['appointment', 'book'], reply: 'You can book an appointment by calling us at +123-456-7890 or via our website.' },
-    { keywords: ['location', 'address'], reply: 'We are located at 22B Madison Street, Brgy.Mariana, Quezon City' },
-    { keywords: ['price', 'cost' ,'xray','anti','basic','ca','dengue','creatinine','culture','hepatitis','pregnancy','prostate','rubella'
-        ,'total','troponin','toxoplasma','varicella'
-    ], reply: 'Please specify the service so I can give you the price.' },
-
+    { 
+        keywords: ['hello', 'hi', 'goodmorning'], 
+        reply: { en: 'Hello! Im Moy AI chatbot, your virtual assistant. Ready to help with your questions.', 
+                 tl: 'Kumusta! Ako si Moy AI chatbot, ang iyong virtual assistant. Handa akong tumulong sa iyong mga katanungan.' } 
+    },
+    { 
+        keywords: ['hours', 'time', 'oras'], 
+        reply: { en: 'Our clinic is open from 8am to 6pm, Monday to Saturday.', 
+                 tl: 'Bukas ang aming klinika mula 8am hanggang 6pm, Lunes hanggang Sabado.' } 
+    },
+    { 
+        keywords: ['services','service','SERVICES','Services','serbisyo'], 
+        reply: { en: 'We offer Physical Exams, Lab Tests, X-ray, Ultrasound, ECG, Dental, and Optical services.', 
+                 tl: 'Nag-aalok kami ng Physical Exam, Laboratory Tests, X-ray, Ultrasound, ECG, Dental, at Optical services.' } 
+    },
+    { 
+        keywords: ['appointment', 'book', 'pa-appointment'], 
+        reply: { en: 'You can book an appointment by calling us at +123-456-7890 or via our website.', 
+                 tl: 'Maaari kayong magpa-appointment sa pamamagitan ng pagtawag sa +123-456-7890 o sa aming website.' } 
+    },
+    { 
+        keywords: ['location', 'address', 'lokasyon'], 
+        reply: { en: 'We are located at 22B Madison Street, Brgy.Mariana, Quezon City.', 
+                 tl: 'Matatagpuan ang aming klinika sa 22B Madison Street, Brgy. Mariana, Quezon City.' } 
+    },
+    { 
+        keywords: ['price', 'cost','presyo',], 
+        reply: { en: 'Please specify the service so I can give you the price.', 
+                 tl: 'Pakispecify ang serbisyo upang maibigay ko ang presyo.' } 
+    },
     // =========================
     // Medical Services Prices
     // =========================
@@ -45,7 +70,7 @@ const autoReplies = [
     { keywords: ['anti-hbs'], reply: '₱450.00' },
     { keywords: ['anti-hcv'], reply: '₱560.00' },
     { keywords: ['anti-hbe'], reply: '₱560.00' },
-    { keywords: ['audiometry'], reply: '₱200.00' },
+    { keywords: ['audiometry','audio'], reply: '₱200.00' },
     { keywords: ['b-hcg'], reply: '₱1,300.00' },
     { keywords: ['basic 4'], reply: '₱350.00' },
     { keywords: ['basic 5'], reply: '₱450.00' },
@@ -64,7 +89,7 @@ const autoReplies = [
     { keywords: ['cea'], reply: '₱1,300.00' },
     { keywords: ['cell and differential count'], reply: '₱450.00' },
     { keywords: ['chloride'], reply: '₱250.00' },
-    
+    { keywords: ['cocaine','cocaine test'], reply: '₱500.00' },
     { keywords: ['cholesterol'], reply: '₱250.00' },
     { keywords: ['cmv igg'], reply: '₱1,500.00' },
     { keywords: ['cmv igm'], reply: '₱1,600.00' },
@@ -80,19 +105,17 @@ const autoReplies = [
     { keywords: ['culture and sensitivity'], reply: '₱900.00' },
     { keywords: ['culture only'], reply: '₱600.00' },
     { keywords: ['check-up'], reply: '₱500.00' },
-    { keywords: ['chest x-ray','chest xray'], reply: '₱300.00' },
-    { keywords: ['chest x-ray vdr','chest vdr'], reply: '₱500.00' },
-        { keywords: ['chest x-ray pa','chestpa','chest PA','chest pa'], reply: '₱300.00' },
-
+    { keywords: ['chest x-ray','chest pa','Chest PA','chest PA'], reply: '₱300.00' },
+    { keywords: ['chest x-ray vdr'], reply: '₱500.00' },
     { keywords: ['chest x-ray ap/lat','ap/lat'], reply: '₱750.00' },
     { keywords: ['cocaine','cocaine test'], reply: '₱500.00' },
     { keywords: ['creamship management'], reply: '₱850.00' },
     { keywords: ['dengue iga'], reply: '₱2,600.00' },
-    { keywords: ['dengue igm and igg'], reply: '₱1,500.00' },
+    { keywords: ['dengue igm and igg','dengue igg and igm'], reply: '₱1,500.00' },
     { keywords: ['dengue nsi'], reply: '₱2,000.00' },
-    { keywords: ['drug and alcohol test','drugtest','alcoholtest','alcohol test','drug test'], reply: '₱250.00' },
+    { keywords: ['drug and alcohol test','drugtest','alcoholtest','alcohol test'], reply: '₱250.00' },
     { keywords: ['ecg'], reply: '₱350.00' },
-    { keywords: ['estradiol'], reply: '₱1,300.00' },
+    { keywords: ['estradiol'], reply: '₱1,300.00' },  
     { keywords: ['estrogen'], reply: '₱1,300.00' },
     { keywords: ['fbs'], reply: '₱200.00' },
     { keywords: ['ferritin'], reply: '₱1,300.00' },
@@ -146,7 +169,7 @@ const autoReplies = [
     { keywords: ['occult blood'], reply: '₱350.00' },
     { keywords: ['ogct'], reply: '₱250.00' },
     { keywords: ['ogtt'], reply: '₱650.00' },
-    { keywords: ['pap smear'], reply: '₱500.00' },
+    { keywords: ['pap smear','papsmear'], reply: '₱500.00' },
     { keywords: ['peripheral blood sugar'], reply: '₱550.00' },
     { keywords: ['phates package 1'], reply: '₱4,600.00' },
     { keywords: ['phates package 2'], reply: '₱1,800.00' },
@@ -258,27 +281,93 @@ document.addEventListener('mousemove', (e) => {
     chatbox.style.top = `${e.clientY - offsetY}px`;
 });
 
-// Fully auto-reply system
 function autoReply(message) {
-    const msg = message.toLowerCase();
-    let replied = false;
+    let msg = message.toLowerCase().trim();
 
-    // Check each predefined reply
-    for (let r of autoReplies) {
-        if (r.keywords.some(k => msg.includes(k))) {
-            addBotMessage(r.reply);
-            replied = true;
-            break;
-        }
+    // Remove "magkano ang" or "how much is"
+    msg = msg.replace(/magkano ang\s+/i, '').replace(/how much is\s+/i, '');
+
+    // Alias map for shorthand typing
+    const aliasMap = {
+        "xray": ["chest x-ray", "chest x-ray vdr", "chest x-ray ap/lat"]
+    };
+
+    // --- 1️⃣ Check general inquiries first ---
+    const generalReplies = autoReplies.filter(r => typeof r.reply === "object"); // only general inquiries
+    const exactGeneral = generalReplies.find(r => r.keywords.some(k => k.toLowerCase() === msg));
+    if (exactGeneral) {
+        addBotMessage(currentLang === "tl" ? exactGeneral.reply.tl : exactGeneral.reply.en);
+        return;
+    }
+    // Partial match for general inquiries (e.g., "saan location")
+    const partialGeneral = generalReplies.filter(r => r.keywords.some(k => msg.includes(k.toLowerCase())));
+    if (partialGeneral.length === 1) {
+        addBotMessage(currentLang === "tl" ? partialGeneral[0].reply.tl : partialGeneral[0].reply.en);
+        return;
     }
 
-    // If no keywords match, tell user the service is not available
-    if (!replied) {
-        addBotMessage("Sorry, the service you are looking for is not available in this clinic.");
+    // --- 2️⃣ Alias map ---
+    if (aliasMap[msg]) {
+        addBotMessage(currentLang === "tl"
+            ? `Pakispecify ang serbisyo. Mga options: ${aliasMap[msg].join(', ')}`
+            : `Please specify which service you mean. Options: ${aliasMap[msg].join(', ')}`
+        );
+        return;
     }
+
+    // --- 3️⃣ Service / price matching ---
+    const serviceReplies = autoReplies.filter(r =>
+        !r.keywords.includes('price') &&
+        !r.keywords.includes('cost') &&
+        !r.keywords.includes('presyo') &&
+        typeof r.reply !== "object" // exclude general inquiries
+    );
+
+    // Exact match
+    const exactMatch = serviceReplies.find(r => r.keywords.some(k => k.toLowerCase() === msg));
+    if (exactMatch) {
+        const r = exactMatch;
+        addBotMessage(typeof r.reply === "object"
+            ? (currentLang === "tl" ? r.reply.tl : r.reply.en)
+            : r.reply
+        );
+        return;
+    }
+
+    // Partial match
+    const partialMatches = serviceReplies.filter(r => r.keywords.some(k => k.toLowerCase().includes(msg)));
+    if (partialMatches.length === 1) {
+        const r = partialMatches[0];
+        addBotMessage(typeof r.reply === "object"
+            ? (currentLang === "tl" ? r.reply.tl : r.reply.en)
+            : r.reply
+        );
+        return;
+    }
+    if (partialMatches.length > 1) {
+        const options = partialMatches.map(r => r.keywords[0]).filter((v,i,a)=>a.indexOf(v)===i).join(', ');
+        addBotMessage(currentLang === "tl"
+            ? `Pakispecify ang serbisyo. Mga options: ${options}`
+            : `Please specify which service you mean. Options: ${options}`
+        );
+        return;
+    }
+
+    // Price inquiry fallback
+    if (message.toLowerCase().includes('magkano') || message.toLowerCase().includes('price') || message.toLowerCase().includes('cost')) {
+        addBotMessage(currentLang === "tl"
+            ? "Pakispecify ang serbisyo upang maibigay ko ang presyo."
+            : "Please specify the service so I can give you the price."
+        );
+        return;
+    }
+
+    // Default fallback
+    addBotMessage(currentLang === "tl"
+        ? "Paumanhin, ang serbisyong hinahanap ninyo ay hindi available sa klinikang ito."
+        : "Sorry, the service you are looking for is not available in this clinic."
+    );
 }
-
-
 function addBotMessage(text) {
     const botDiv = document.createElement('div');
     botDiv.classList.add('bot-message');
@@ -327,4 +416,33 @@ chatInput.addEventListener('keypress', function(e) {
         }, 1000);
     }
 });
+function resetChat() {
+    // Clear all chat messages
+    chatBody.innerHTML = '';
+    
+    // Clear the input field
+    chatInput.value = '';
 
+    // Show welcome message in the current language
+    const welcomeText = currentLang === "tl" 
+        ? "Kamusta! Paano namin kayo matutulungan?" 
+        : "Hello! How can we assist you today?";
+    
+    addBotMessage(welcomeText);
+}
+// Language setting
+let currentLang = "en";
+
+function setChatLanguage(lang) {
+    currentLang = lang;
+
+    // Update input placeholder
+    if (chatInput) {
+        chatInput.placeholder = (lang === "tl") 
+            ? "I-type ang iyong mensahe..." 
+            : "Type your message...";
+    }
+
+    // Reset the chat when language changes
+    resetChat();
+}
