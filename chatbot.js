@@ -364,7 +364,7 @@ function autoReply(message) {
 
     // Default fallback
     addBotMessage(currentLang === "tl"
-        ? "Paumanhin, ang serbisyong hinahanap ninyo ay hindi available sa klinikang ito."
+        ? "Paumanhin, ang serbisyong hinahanap ninyo ay hindi available sa klinikang ito.Pakitype ang serbisyong eksaktong nakalista sa pagpipilian upang mabigyan ka namin ng tamang sagot"
         : "Sorry, the service you are looking for is not available at this clinic.Please type the service exactly as shown in the options so we can provide the correct response."
 
     );
