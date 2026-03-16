@@ -365,9 +365,8 @@ function autoReply(message) {
     // Default fallback
     addBotMessage(currentLang === "tl"
         ? "Paumanhin, ang serbisyong hinahanap ninyo ay hindi available sa klinikang ito."
-        : "Sorry, the service you are looking for is not available at this clinic.
-Please type the service exactly as shown in the options so we can provide the correct response.
-"
+        : "Sorry, the service you are looking for is not available at this clinic.Please type the service exactly as shown in the options so we can provide the correct response."
+
     );
 }
 function addBotMessage(text) {
