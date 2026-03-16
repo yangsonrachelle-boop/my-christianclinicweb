@@ -25,12 +25,12 @@ header{
   justify-content:space-between;
   align-items:center;
   padding:15px 60px;
-  flex-wrap: wrap; /* allow wrapping on mobile */
+  flex-wrap: wrap;
 }
 
 header h1{
-  font-size:28px;
-  margin-bottom: 10px;
+  font-size:2rem; /* responsive */
+  margin-bottom:10px;
 }
 
 nav{
@@ -47,6 +47,7 @@ nav a{
   color:white;
   text-decoration:none;
   font-weight:bold;
+  font-size:1rem;
 }
 
 /* MAIN SECTION */
@@ -54,25 +55,26 @@ nav a{
   display:flex;
   justify-content:space-between;
   padding:70px 100px;
-  flex-wrap: wrap; /* stack on small screens */
+  flex-wrap: wrap;
+  gap:20px;
 }
 
 /* LEFT SIDE */
 .left{
-  width:40%;
-  min-width:280px;
+  flex:1 1 300px;   /* flexible width */
+  max-width:500px;
   margin-bottom:30px;
 }
 
 .left h2{
-  font-size:40px;
+  font-size:2.5rem; /* responsive */
   color:#0a8f08;
   margin-bottom:20px;
 }
 
 .info{
   margin-top:30px;
-  font-size:18px;
+  font-size:1rem;
 }
 
 .info p{
@@ -81,8 +83,8 @@ nav a{
 
 /* RIGHT SIDE */
 .right{
-  width:45%;
-  min-width:280px;
+  flex:1 1 300px;
+  max-width:500px;
   background:#eeeeee;
   padding:30px;
   border-radius:12px;
@@ -96,7 +98,7 @@ input, select{
   margin-bottom:15px;
   border-radius:8px;
   border:1px solid #ccc;
-  font-size:16px;
+  font-size:1rem;
 }
 
 /* BUTTON */
@@ -105,9 +107,10 @@ button{
   color:white;
   border:none;
   padding:15px;
-  width:200px;
+  width:80%;
+  max-width:200px;
   border-radius:8px;
-  font-size:18px;
+  font-size:1.1rem;
   cursor:pointer;
   display:block;
   margin:20px auto;
@@ -123,12 +126,12 @@ button:hover{
   text-align:center;
 }
 
-/* MOBILE RESPONSIVE */
-@media (max-width: 900px){
+/* MOBILE / TABLET RESPONSIVE */
+@media (max-width:900px){
   .container{
-    padding:40px 20px;
     flex-direction: column;
     align-items: center;
+    padding:40px 20px;
   }
 
   .left, .right{
@@ -138,8 +141,8 @@ button:hover{
   header{
     padding:15px 20px;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    align-items:flex-start;
+    gap:10px;
   }
 
   nav{
@@ -147,11 +150,11 @@ button:hover{
   }
 
   .left h2{
-    font-size:32px;
+    font-size:2rem;
   }
 
   input, select{
-    font-size:14px;
+    font-size:0.95rem;
     padding:12px;
   }
 
@@ -160,13 +163,17 @@ button:hover{
   }
 }
 
-@media (max-width: 500px){
+@media (max-width:500px){
   .left h2{
-    font-size:28px;
+    font-size:1.8rem;
   }
 
   .info{
-    font-size:16px;
+    font-size:0.9rem;
+  }
+
+  header h1{
+    font-size:1.5rem;
   }
 }
 </style>
@@ -254,10 +261,9 @@ form.addEventListener('submit', async (e) => {
     const result = await response.json();
     messageDiv.textContent = result.message;
 
-    // If booking is successful, disable the button
     if (result.message.includes("successfully")) {
         form.reset();
-        submitBtn.disabled = true;        
+        submitBtn.disabled = true;
         submitBtn.textContent = "Booked!";
     }
 });
