@@ -245,27 +245,27 @@ button:hover{
 <script>
 const form = document.getElementById('bookingForm');
 const messageDiv = document.getElementById('message');
-const submitBtn = form.querySelector('button[type="submit"]');
 
-form.addEventListener('submit', async (e) => {
+form.addEventListener('submit', function(e) {
     e.preventDefault();
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries());
 
-    const response = await fetch('/book-appointment', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-    });
+    let formData = new FormData(form);
+    let data = Object.fromEntries(formData.entries());
 
-    const result = await response.json();
-    messageDiv.textContent = result.message;
+    // Get existing bookings
+    let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
 
-    if (result.message.includes("successfully")) {
-        form.reset();
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Booked!";
-    }
+    // Add new booking
+    bookings.push(data);
+
+    // Save to localStorage
+    localStorage.setItem("bookings", JSON.stringify(bookings));
+
+    // Show success message
+    messageDiv.textContent = "Appointment booked successfully!";
+
+    // Clear form
+    form.reset();
 });
 </script>
 </body>
